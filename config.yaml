@@ -1,0 +1,92 @@
+baseurl: 'http://blog.florentdelannoy.com/'
+languageCode: en-us
+title: Florent's Blog
+theme: hugo-strata-theme
+disqusShortname: spf13
+googleAnalytics: ''
+paginate: 10
+params:
+  name: Your name
+  description: Describe your website
+  date_format: '2006-01-02'
+  custom_js: []
+  custom_css: []
+  sidebar:
+    avatar: avatar.jpg
+    bio: >-
+      **I'm Strata**, a super simple<br> responsive site template freebie<br>
+      crafted by [HTML5 UP](//html5up.net).
+    twitter: spf13
+    github: spf13
+    dribbble: ''
+    facebook: ''
+    googleplus: ''
+    flickr: ''
+    linkedin: ''
+    copyright:
+      - '&copy; John Doe'
+      - 'Design: [HTML5 UP](//html5up.net)'
+      - 'Demo Images: [Unsplash](//unsplash.com/)'
+  about:
+    hide: false
+    title: Ipsum lorem dolor aliquam ante commodo magna sed accumsan arcu neque.
+    content: >-
+      Accumsan orci faucibus id eu lorem semper. Eu ac iaculis ac nunc nisi
+      lorem vulputate lorem neque cubilia ac in adipiscing in curae lobortis
+      tortor primis integer massa adipiscing id nisi accumsan pellentesque
+      commodo blandit enim arcu non at amet id arcu magna. Accumsan orci
+      faucibus id eu lorem semper nunc nisi lorem vulputate lorem neque cubilia.
+  portfolio:
+    hide: false
+    title: Recent Work
+    gallery:
+      - image: fulls/01.jpg
+        thumb: thumbs/01.jpg
+        title: Lorem ipsum dolor.
+        description: Lorem ipsum dolor sit amet.
+      - image: fulls/02.jpg
+        thumb: thumbs/02.jpg
+        title: Lorem ipsum dolor.
+        description: Lorem ipsum dolor sit amet.
+      - image: fulls/03.jpg
+        thumb: thumbs/03.jpg
+        title: Lorem ipsum dolor.
+        description: Lorem ipsum dolor sit amet.
+      - image: fulls/04.jpg
+        thumb: thumbs/04.jpg
+        title: Lorem ipsum dolor.
+        description: Lorem ipsum dolor sit amet.
+      - image: fulls/05.jpg
+        thumb: thumbs/05.jpg
+        title: Lorem ipsum dolor.
+        description: Lorem ipsum dolor sit amet.
+      - image: fulls/06.jpg
+        thumb: thumbs/06.jpg
+        title: Lorem ipsum dolor.
+        description: Lorem ipsum dolor sit amet.
+  contact:
+    hide: false
+    title: Get In Touch
+    content: >-
+      Accumsan pellentesque commodo blandit enim arcu non at amet id arcu magna.
+      Accumsan orci faucibus id eu lorem semper nunc nisi lorem vulputate lorem
+      neque lorem ipsum dolor.
+    address:
+      - 1234 Somewhere Rd.
+      - 'Nashville, TN 00000'
+      - United States
+    phone: 000-000-0000
+    email: hello@example.com
+    form:
+      name: Name
+      email: Email
+      message: Message
+      submit: Send message
+menu:
+  main:
+    - name: Home
+      url: /
+      weight: 0
+    - name: Blog
+      url: post/
+      weight: 10
