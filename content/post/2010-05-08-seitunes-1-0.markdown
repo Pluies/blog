@@ -1,0 +1,61 @@
+---
+author: Florent
+date: 2010-05-08 21:43:13+00:00
+draft: false
+title: Seitunes 1.0
+type: post
+url: /blog/2010/seitunes-1-0/
+categories:
+- OS X
+tags:
+- OS X
+- Seitunes
+---
+
+Seitunes v1 is here! I think everything I need it to do is in here. I'm not planning on adding new features in the near future - if anything, I'll concentrate on optimizing performance.
+
+
+# Sei what?
+
+
+Seitunes is a **command-line interface for iTunes**.
+
+It allows you to see what's playing in iTunes and control it (play, pause, set volume, toggle shuffle, select a playlist, set song rating) from your terminal.
+
+
+# Overview of v1.0
+
+
+I finally decided to split the program in two separate parts.
+
+libseitunes.(c|h) is a C API to access iTunes through Applescript calls. It is also under GPL.
+
+Seitunes.(c|h) is the higher-level part of the application, which is now completely Applescript-free.
+
+
+# New Features
+
+
+Support for **rating** (display and modification).
+
+**Playlists**: Seitunes now displays the playlist currently playing. You can also see all available playlists, and select the one you want to play (with '/').
+
+
+# Bug fixes
+
+
+A bug caused Seitunes to think iTunes was completely stopped (hence not displaying data about artist and song) if you went to next track whilst playback was paused. iTunes actually reports such a condition as "stopped", so I added some code to handle this case (it basically checks if there is a "current track", and if so, displays the data).
+
+
+# GitHub
+
+
+Seitunes is now [on GitHub](https://github.com/pluies/Seitunes)!
+
+
+# MeWare?
+
+
+I've stumbled upon this very interesting [blog post by Eric Sink](http://www.ericsink.com/articles/Yours_Mine_Ours.html), classifying software into three big categories: ThemWare (someone writes software, only other people use it), MeWare (someone write software, only he uses it) and UsWare (someone writes software, he uses it and other people do so).
+
+I have currently no idea if anyone else uses Seitunes, or even downloaded it once to see. If you do use it, I'd be delighted to hear from you!

@@ -1,0 +1,15 @@
+/* Improve contrast */
+body, input, select, textarea {
+  color: #505050;
+}
+
+#header h1, #sidebar ul li a, #footer .copyright {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Fix code blocks / syntax highlighting */
+.chroma code {
+  color: #d0d0d0;
+  background-color: #202020;
+  border: none;
+}

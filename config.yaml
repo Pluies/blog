@@ -1,71 +1,68 @@
 baseurl: 'http://blog.florentdelannoy.com/'
-languageCode: en-us
+languageCode: en-uk
 title: Florent's Blog
 theme: hugo-strata-theme
-disqusShortname: spf13
 googleAnalytics: ''
 paginate: 10
+pygmentsCodeFences: true
+pygmentsUseClasses: true
 params:
-  name: Your name
-  description: Describe your website
+  name: Florent Delannoy
+  description: Florent Delannoy's blog
   date_format: '2006-01-02'
   custom_js: []
-  custom_css: []
+  custom_css:
+  - syntax.css
+  - overrides.css
   sidebar:
-    avatar: avatar.jpg
+    avatar: florent.jpg
     bio: >-
-      **I'm Strata**, a super simple<br> responsive site template freebie<br>
-      crafted by [HTML5 UP](//html5up.net).
-    twitter: spf13
-    github: spf13
+      **I'm Florent**, a software engineer
+      <br> based in London
+    twitter: ''
+    github: 'pluies'
     dribbble: ''
     facebook: ''
     googleplus: ''
     flickr: ''
-    linkedin: ''
+    linkedin: 'florentdelannoy'
     copyright:
-      - '&copy; John Doe'
+      - '&copy; Florent Delannoy'
       - 'Design: [HTML5 UP](//html5up.net)'
-      - 'Demo Images: [Unsplash](//unsplash.com/)'
   about:
     hide: false
-    title: Ipsum lorem dolor aliquam ante commodo magna sed accumsan arcu neque.
+    title: // TODO Come up with witty tagline
     content: >-
-      Accumsan orci faucibus id eu lorem semper. Eu ac iaculis ac nunc nisi
+      Hi! I'm Florent Delannoy, a software engineer with a focus in devops, cloud-native infrastructure,
+      and backend engineering in general. <br>
+      // TODO: remove Lorem Ipsum. Accumsan orci faucibus id eu lorem semper. Eu ac iaculis ac nunc nisi
       lorem vulputate lorem neque cubilia ac in adipiscing in curae lobortis
       tortor primis integer massa adipiscing id nisi accumsan pellentesque
       commodo blandit enim arcu non at amet id arcu magna. Accumsan orci
       faucibus id eu lorem semper nunc nisi lorem vulputate lorem neque cubilia.
   portfolio:
     hide: false
-    title: Recent Work
+    title: Projects
     gallery:
-      - image: fulls/01.jpg
-        thumb: thumbs/01.jpg
-        title: Lorem ipsum dolor.
-        description: Lorem ipsum dolor sit amet.
-      - image: fulls/02.jpg
-        thumb: thumbs/02.jpg
-        title: Lorem ipsum dolor.
-        description: Lorem ipsum dolor sit amet.
-      - image: fulls/03.jpg
-        thumb: thumbs/03.jpg
-        title: Lorem ipsum dolor.
-        description: Lorem ipsum dolor sit amet.
-      - image: fulls/04.jpg
-        thumb: thumbs/04.jpg
-        title: Lorem ipsum dolor.
-        description: Lorem ipsum dolor sit amet.
-      - image: fulls/05.jpg
-        thumb: thumbs/05.jpg
-        title: Lorem ipsum dolor.
-        description: Lorem ipsum dolor sit amet.
-      - image: fulls/06.jpg
-        thumb: thumbs/06.jpg
-        title: Lorem ipsum dolor.
-        description: Lorem ipsum dolor sit amet.
+      - image: remaildr.png
+        thumb: remaildr.png
+        title: "[Remaildr](http://remaildr.com)"
+        description: Low-tech, email-based reminders.
+      - image: octocat.jpg
+        thumb: octocat.jpg
+        title: "[Github](https://github.com/Pluies/)"
+        description: Open-source bits and pieces.
+#      - image: fulls/03.jpg
+#        thumb: thumbs/03.jpg
+#        title: Lorem ipsum dolor.
+#        description: Lorem ipsum dolor sit amet.
+#      - image: fulls/04.jpg
+#        thumb: thumbs/04.jpg
+#        title: Lorem ipsum dolor.
+#        description: Lorem ipsum dolor sit amet.
   contact:
-    hide: false
+    email: ~
+    hide: true
     title: Get In Touch
     content: >-
       Accumsan pellentesque commodo blandit enim arcu non at amet id arcu magna.
@@ -76,7 +73,6 @@ params:
       - 'Nashville, TN 00000'
       - United States
     phone: 000-000-0000
-    email: hello@example.com
     form:
       name: Name
       email: Email

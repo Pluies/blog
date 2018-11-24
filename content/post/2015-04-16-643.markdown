@@ -1,0 +1,30 @@
+---
+author: Florent
+date: 2015-04-16 07:52:55+00:00
+draft: false
+title: No Content Found
+type: post
+url: /blog/2015/643/
+categories:
+- Programming
+---
+
+"So, the tests sometimes fail inexplicably" is a sentence you probably hear pretty often if you're running any type of full-stack, browser-driven integration tests over a large-enough code base, especially when customising on top of an existing product.
+
+Today's instance was puzzling at first - the tests would sometimes fail to log in at all. That is, open the login page, fill in the username and password, wait until the URL change and assert that we're now on the dashboard - nope, failure. It happens about 5% of the time, breaks straight away (no timeout), but happens to seemingly random users as different points of testing.
+
+Well, time to output some debug information. First, let's see whether that "wait until URL change" logic is working properly by outputting the URL after it changed - yes, the URL has indeed changed, and is now back into the login page with a little `?error=true` tacked to the end.
+
+An error at login? Let's check the username and password... No, they're definitely correct. And the problem is intermittent anyway. Could it be the backend rejecting valid credentials every so often? I'd never heard of that happening, but who knows. Let's keep that in mind and possibly come back to it later.
+
+As an added debugging, I made the test output the values of the username and password field sbefore they get submitted, and now we've got something interesting - the values filled in aren't the values we told Cucumber to fill in! Instead of e.g. "`username`" / "`password`", the username is filled in and sent as "`usernameassword`" and the password as "`p`".
+
+Uh? Ah!
+
+And lo and behold, the culprit is unmasked - as a useful convenience, the login page executes a tiny bit of Javascript on page load that sets the focus to the "username" field so that a user doesn't have to click or tab through it, but can start typing straight away. And Cucumber+Phantom faithfully emulating a browser and executing the javascript on that page will run into a race condition in which it starts entering keystrokes into a field, only to get its focus stolen by javascript and writing the rest of the keystrokes into the other field.
+
+And the bug was of course intermittent because it would only happen when Cucumber was writing the password concurrently with page load. Any time before that and the fields would be correct, any time after that and the fields would be just as correct.
+
+
+
+Our solution? `Watir::Wait.until { browser.username_field.focused? }` before actually filling in the fields and logging in. Works like a charm!

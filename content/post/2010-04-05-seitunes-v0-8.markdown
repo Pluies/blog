@@ -1,0 +1,51 @@
+---
+author: Florent
+date: 2010-04-05 00:24:08+00:00
+draft: false
+title: Seitunes v0.8
+type: post
+url: /blog/2010/seitunes-v0-8/
+categories:
+- OS X
+tags:
+- OS X
+- Seitunes
+---
+
+Version 0.8 of Seitunes is here!
+
+Apart from finishing implementing the core functions, I focused on code clarity and performance enhancements.
+
+
+
+## Code
+
+
+All major Applescript interactions with iTunes now go through separate C functions instead of "oh hey just do it here in main()" as before. These functions act as wrappers to access iTunes, and can be re-used for any other project. I could even put them in a separate file and call it a library :)
+
+
+
+## Performance
+
+
+Seitunes used to refresh data (artist, song, volume, shuffle, playlist) all the time, with Applescript, to get data directly from iTunes itself. I reduced the number of interactions and reduced the calls to iTunes.
+For example, the "+" key used to tell iTunes to increase the volume, then call Applescript to refresh all data, including the new Volume value. Now it just tell iTunes to increase Volume, computes the new Volume value to display and goes along with it.
+I kept refresh mandatory for the iTunes status in case anything goes wrong (playlist ended, etc).
+Refresh is also forced when changing songs - obviously we don't want to wait 3 seconds to see the song we just changed.
+
+Of course it creates a problem when a song ends by itself. If we never refresh automatically, we can't display up-to-date data.
+I solved this by adding a "decay" counter that forces a refresh if the data is more than 3 seconds old.
+
+All of this seem to have a positive effect: Seitunes now feels as snappy and reactive as directly using iTunes.
+
+
+## New features
+
+
+
+> Quit iTunes
+> Toggle shuffle
+> Display current playlist
+> Less Applescript errors (yay!)
+
+Actually there _shouldn't_ be any Applescript error left (and yes that's a feature!).
