@@ -1,4 +1,4 @@
-baseurl: 'http://blog.florentdelannoy.com/'
+baseurl: 'https://blog.florentdelannoy.com/'
 languageCode: en-uk
 title: Florent's Blog
 theme: hugo-strata-theme
