@@ -4,13 +4,15 @@ Source for [https://blog.florentdelannoy.com/](https://blog.florentdelannoy.com/
 
 ## Run locally
 
-- Checkout this repository
-- Initialise the submodules: `git submodule update --init`
-- Run: `hugo serve`
+Checkout this repository.
+
+Initialise the submodules: `git submodule update --init`
+
+Run `hugo serve --buildDrafts`
 
 ## Build
 
-- `docker build .`
+`docker build .`
 
 Do it once the content has changed to ensure everything works 👌
 
