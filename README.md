@@ -8,7 +8,7 @@ Source for [https://blog.florentdelannoy.com/](https://blog.florentdelannoy.com/
 - Initialise the submodules: `git submodule update --init`
 - Run: `hugo serve`
 
-## Build
+## Build
 
 - `docker build .`
 
