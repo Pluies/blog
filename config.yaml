@@ -43,8 +43,8 @@ params:
         thumb: octocat.jpg
         title: "[Zeitgeist](https://github.com/Pluies/zeitgeist)"
         description: The language-agnostic dependency checker.
-      - image: octocat.jpg
-        thumb: octocat.jpg
+      - image: k8s.png
+        thumb: k8s.png
         title: "[k8s setup](https://github.com/Pluies/k8s)"
         description: The infrastructure that runs this blog.
       - image: remaildr.png
