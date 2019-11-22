@@ -1,7 +1,7 @@
 ---
 author: Florent
-date: 2019-11-20 16:47:50+00:00
-draft: true
+date: 2019-11-22 11:20:37+00:00
+draft: false
 title: "Envoy, Ambassador and Istio: a gzip adventure"
 type: post
 url: /blog/2019/envoy-ambassador-istio-gzip/
@@ -27,7 +27,7 @@ We use [Akamai](https://www.akamai.com/) as a Content Delivery Network. All call
 Akamai's coverage is... Extensive:
 
 <img src="/images/akamai.png" alt="Akamai POPs" style="width: 100%;">
-<p style="text-align: center;">_Do <b>you</b> have servers [in Antarctica?](https://www.akamai.com/uk/en/solutions/intelligent-platform/visualizing-akamai/media-delivery-map.jsp)_</p>
+<p style="text-align: center;">_Do <u>you</u> have servers [in Antarctica?](https://www.akamai.com/uk/en/solutions/intelligent-platform/visualizing-akamai/media-delivery-map.jsp)_</p>
 
 
 And, crucially... When a client supports compression, and the response that Akamai receives from our origin servers is not compressed, it will go ahead and compress it before returning it to the client. However, if the response from the origin server is _already_ compressed, Akamai will send it to the client as-is: compression twice is useless, and decompressing + recompressing every request is wasteful.
@@ -65,12 +65,16 @@ local gzip, base          39126
 local gzip, optimised     38941
 ```
 
+Or as a graph:
+
+<img src="/images/gzip-bars.png" alt="gzip performance graph" style="width: 100%;">
+
 The two main takeaways from this test:
 
-- Most servers compress gzip at very similar ratios
-- But even with an optimised configuration, Ambassador produces files *40% larger* than most servers!
+- Most servers compress gzip at very similar ratios, similar to the stand-alone gzip utility
+- Ambassador produced files *40% larger* than most servers, even "optimised"!
 
-Using Envoy directly, we were able to optimise this further by setting the [`window_bits` parameter](https://www.envoyproxy.io/docs/envoy/latest/api-v2/config/filter/http/gzip/v2/gzip.proto.html) to `15`, which produced compressed files about 10% larger than other servers – still not ideal, but a sizeable improvement.
+Using Envoy directly, we were able to reduce the size by setting the [`window_bits` parameter](https://www.envoyproxy.io/docs/envoy/latest/api-v2/config/filter/http/gzip/v2/gzip.proto.html) to `15`, which produced compressed files about 10% larger than other servers. Still not ideal, but a sizeable improvement.
 
 We also started using this configuration in our Istio mesh to enable compression as widely as possible.
 
