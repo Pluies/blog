@@ -10,6 +10,8 @@ Initialise the submodules: `git submodule update --init`
 
 Run `hugo serve --buildDrafts`
 
+Or, alternatively, on Docker, run `make dev`
+
 ## Build
 
 `docker build .`
