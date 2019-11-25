@@ -69,6 +69,8 @@ Or as a graph:
 
 <img src="/images/gzip-bars.png" alt="gzip performance graph" style="width: 100%;">
 
+The results we saw in the live environment for Akamai were identical to optimised Apache / optimised nginx / local CLI.
+
 The two main takeaways from this test:
 
 - Most servers compress gzip at very similar ratios, similar to the stand-alone gzip utility
