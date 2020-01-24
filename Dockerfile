@@ -1,4 +1,4 @@
-FROM cibuilds/hugo as builder
+FROM cibuilds/hugo:0.60 as builder
 
 RUN mkdir -p /var/www/blog
 COPY . /var/www/blog
