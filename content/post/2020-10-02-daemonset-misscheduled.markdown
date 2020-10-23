@@ -1,6 +1,6 @@
 ---
 author: Florent
-date: 2020-10-02 16:18:01+00:00
+date: 2020-10-23 16:18:01+00:00
 draft: false
 title: "\"Warning: KubeDaemonSetMisScheduled\"? What's that about?"
 type: post
