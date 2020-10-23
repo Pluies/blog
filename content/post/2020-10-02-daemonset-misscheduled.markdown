@@ -2,16 +2,16 @@
 author: Florent
 date: 2020-10-02 16:18:01+00:00
 draft: false
-title: "Warning: KubeDaemonSetMisScheduled, what's that about?"
+title: "\"Warning: KubeDaemonSetMisScheduled\"? What's that about?"
 type: post
 url: /blog/2020/kube-daemonset-misscheduled/
 ---
 
-I recently set up the [`kube-prometheus-stack`](https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/) Helm chart (formerly known as [`prometheus-operator`](https://github.com/helm/charts/tree/master/stable/prometheus-operator)) on our Kubernetes clusters as $dayjob .
+I recently set up the [`kube-prometheus-stack`](https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/) Helm chart (formerly known as [`prometheus-operator`](https://github.com/helm/charts/tree/master/stable/prometheus-operator)) on our Kubernetes clusters as $dayjob.
 
 This chart sets up a full monitoring and alerting stack, with Prometheus for metrics collection & retention, Grafana for visualisation, and AlertManager for, well, managing alerts (!).
 
-The out-of-the-box monitoring is awesome: extremely detailed, with a wealth of built-in metrics & alerts. The flip side is that some of the warnings are very twitchy, and may be triggered under normal operations while everything is absolutely fine. It's a pretty good tradeoff, if you ask me: better to err on the side of over-alerting and have to tune down some alerts than have your cluster in a bad state and not know about it!
+The out-of-the-box monitoring is awesome: extremely detailed, with a wealth of built-in metrics & alerts. On the other hand, some of the warnings are very twitchy, and may be triggered under normal operations while everything is absolutely fine. It's still a pretty good tradeoff, if you ask me: better to err on the side of over-alerting and have to tune down some alerts than have your cluster in a bad state and not know about it!
 
 We tuned or silenced some alerts that we understood, but one stumped me:
 
@@ -25,7 +25,6 @@ The alert cleared out after a few minutes, so I didn't give it a second thought 
 
 Investigating the Misscheduled DaemonSet
 ----------------------------------------
-
 
 A quick google search revealed this had been a problem in the past, and had been discussed as [kube-state-metrics issue #812](https://github.com/kubernetes/kube-state-metrics/issues/812) and [kubernetes-mixin issue #347](https://github.com/kubernetes-monitoring/kubernetes-mixin/issues/347), which tweaked the rule to only raise an alert after 15 minutes rather than immediately.
 
@@ -77,9 +76,9 @@ We use the [`cluster-autoscaler`](https://github.com/kubernetes/autoscaler/tree/
 - Evict all non-daemonset pods running on this node
 - Wait until these pods are terminated, and destroy the node
 
-We happen to have some pods running long-lived background workers that can take a while to spin down gracefully, and therefore have a generous `terminationGracePeriodSeconds` of 600. Which means that during this whole period, the datadog pod is considered as misscheduled - after all, it's on a node that's tainted against it running there!
+We happen to have some pods running long-lived background workers that can take a while to spin down gracefully, and therefore have a generous `terminationGracePeriodSeconds` of 600. Which means that during this whole 10-minute period, the datadog pod is considered misscheduled - after all, it's running on a node that's tainted against it running there!
 
-We do want the datadog pod to stay up on this node until termination, as it sends logs and metrics from all pods, including these long-lived tasks.
+Now, we do want the datadog pod to stay up on this node until termination, as it sends logs and metrics from all pods, including these long-lived tasks.
 
 So how did we solve it? Simply by adding the corresponding toleration to the pod:
 
